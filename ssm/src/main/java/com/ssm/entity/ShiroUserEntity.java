@@ -13,7 +13,7 @@ public class ShiroUserEntity {
 
 	private String password;
 
-	private int roleId;
+	private String roleName;
 
 	public int getId() {
 		return id;
@@ -41,11 +41,11 @@ public class ShiroUserEntity {
 		this.password = password;
 	}
 
-	public int getRoleId() {
-		return roleId;
+	public String getRoleName() {
+		return roleName;
 	}
 
-	public void setRoleId( int roleId ) {
-		this.roleId = roleId;
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
 	}
 }

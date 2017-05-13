@@ -35,6 +35,8 @@ public class ShiroUserController {
 		UsernamePasswordToken token = new UsernamePasswordToken( shiroUser.getUserName(), shiroUser.getPassword() );
 		try {
 			subject.login( token );
+
+			model.addAttribute("shiroUser",shiroUser);
 			return "admin";
 		}
 		catch( Exception e ) {
