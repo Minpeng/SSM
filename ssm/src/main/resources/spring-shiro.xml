@@ -33,13 +33,9 @@
                 /loginAdmin=anon
 
                 <!--authc表示需要认证 没有进行身份认证是不能进行访问的-->
-                /admin*=authc
-
-
-                /student=roles[teacher]
-                /student=perms["user:look"]
-                /teacher=perms["user:create"]
-                /teacher=perms["teacher:look"]
+                /admin*=authc, roles[admin]
+                /teacher*=authc,roles[teacher]
+                /student*=authc,roles[student]
             </value>
         </property>
     </bean>

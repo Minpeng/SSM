@@ -2,13 +2,16 @@ package com.ssm.shiro;
 
 import java.util.Set;
 
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ssm.dao.ShiroUserDaoMapper;
@@ -28,8 +31,8 @@ public class MyRealm extends AuthorizingRealm {
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo( PrincipalCollection principals ) {
 		//test
-		SerShiroUser serShiroUser = (SerShiroUser)principals.getPrimaryPrincipal();
-		System.out.println( "...username...." + serShiroUser.getUserName() );
+		//SerShiroUser serShiroUser = (SerShiroUser)principals.getPrimaryPrincipal();
+		//System.out.println( "...username...." + serShiroUser.getUserName() );
 		//获取用户名
 		String userName = principals.getPrimaryPrincipal().toString();
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
@@ -57,6 +60,20 @@ public class MyRealm extends AuthorizingRealm {
 
     }
 
+	/**
+	 * 将一些数据放到ShiroSession中，以便于其它地方使用
+	 * 比如Controller里面，使用时直接用HttpSession.getAttribute(key)就可以取到
+	 */
+	private void setAuthenticationSession(Object value){
+		Subject currentUser = SecurityUtils.getSubject();
+		if(null != currentUser){
+			Session session = currentUser.getSession();
+			System.out.println("当前Session超时时间为[" + session.getTimeout() + "]毫秒");
+			session.setTimeout(1000 * 60 * 60 * 2);
+			System.out.println("修改Session超时时间为[" + session.getTimeout() + "]毫秒");
+			session.setAttribute("currentUser", value);
+		}
+	}
 }
 
 
