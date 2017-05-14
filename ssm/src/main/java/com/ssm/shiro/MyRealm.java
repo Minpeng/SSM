@@ -27,6 +27,9 @@ public class MyRealm extends AuthorizingRealm {
 	 */
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo( PrincipalCollection principals ) {
+		//test
+		SerShiroUser serShiroUser = (SerShiroUser)principals.getPrimaryPrincipal();
+		System.out.println( "...username...." + serShiroUser.getUserName() );
 		//获取用户名
 		String userName = principals.getPrimaryPrincipal().toString();
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
