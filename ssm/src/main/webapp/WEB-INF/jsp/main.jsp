@@ -77,6 +77,9 @@
 	<a href="${pageContext.request.contextPath}/admin" target="_blank">管理员可访问的页面</a>
 	<br>
 
+
+	<a  href="${pageContext.request.contextPath}/logout">退出</a>
+
 </body>
 </html>
 

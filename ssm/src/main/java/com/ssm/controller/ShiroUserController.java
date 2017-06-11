@@ -20,16 +20,23 @@ public class ShiroUserController {
 		return "login";
 	}
 
-	@RequestMapping( value = "/index", method = { RequestMethod.GET, RequestMethod.POST } )
+	@RequestMapping( value = "index", method = { RequestMethod.GET, RequestMethod.POST } )
 	public String index() {
 		return "login";
 	}
 
+	@RequestMapping( value = "login", method = { RequestMethod.GET, RequestMethod.POST } )
+	public String loginUrl() {
+		return "login";
+	}
 	private static Logger logger = Logger.getLogger( ShiroUserController.class );
 
-	@RequestMapping( "/loginAdmin" )
+	@RequestMapping( "loginAdmin" )
 	public String login( ShiroUserEntity shiroUser, Model model ) {
 		Subject subject = SecurityUtils.getSubject();
+		if(subject==null){
+			return "main";
+		}
 		logger.warn( shiroUser.getUserName() + ":" + shiroUser.getPassword() );
 
 		UsernamePasswordToken token = new UsernamePasswordToken( shiroUser.getUserName(), shiroUser.getPassword() );
@@ -47,20 +54,31 @@ public class ShiroUserController {
 		}
 	}
 
-	@RequestMapping( "/admin" )
+
+	@RequestMapping(value="logout")
+	public String logout(){
+		Subject subject = SecurityUtils.getSubject();
+		subject.logout();
+		return "redirect:/index.do";
+	}
+	@RequestMapping( "admin" )
 	public String admin() {
 		return "admin";
 	}
 
-	@RequestMapping( "/student" )
+	@RequestMapping( "student" )
 	public String student() {
 		return "student";
 	}
 
-	@RequestMapping( "/teacher" )
+	@RequestMapping( "teacher" )
 	public String teacher() {
 		return "teacher";
 	}
 
+	@RequestMapping("nopower")
+	public String noPower(){
+		return  "nopower";
+	}
 
 }

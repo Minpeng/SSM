@@ -10,10 +10,7 @@
                         http://www.springframework.org/schema/mvc
                         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 	
-	 <!-- 第一种方式：加载一个properties文件 -->
-    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="classpath:ssm.properties"/>
-    </bean>
+
     
 	<bean id="sessionDAO"
 		class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO" />
@@ -35,19 +32,31 @@
         <!-- Shiro的核心安全接口,这个属性是必须的 -->
         <property name="securityManager" ref="securityManager"/>
         <!-- 身份认证失败，则跳转到登录页面的配置 -->
-        <property name="loginUrl"  value="${APP_URL}/login"/>
+        <property name="loginUrl"  value="/login"/>
         <!-- 权限认证失败，则跳转到指定页面 -->
         <property name="unauthorizedUrl" value="/nopower"/>
+
+        <property name="filters">
+            <map>
+                <entry key="roles">
+                    <bean class="com.ssm.shiro.CustomRolesAuthorizationFilter"/>
+                </entry>
+            </map>
+        </property>
+
         <!-- Shiro连接约束配置,即过滤链的定义 -->
         <property name="filterChainDefinitions">
             <value>
                 <!--anon 表示匿名访问，不需要认证以及授权-->
                 /loginAdmin=anon
 
+
+
                 <!--authc表示需要认证 没有进行身份认证是不能进行访问的-->
+
                 /admin*=authc, roles[admin]
-                /teacher*=authc,roles[teacher]
-                /student*=authc,roles[student]
+                /teacher*=authc,roles["admin,teacher"]
+                /student*=authc,roles["admin,teacher,student"]
             </value>
         </property>
     </bean>
