@@ -34,8 +34,9 @@ public class ShiroUserController {
 	@RequestMapping( "loginAdmin" )
 	public String login( ShiroUserEntity shiroUser, Model model ) {
 		Subject subject = SecurityUtils.getSubject();
-		if(subject==null){
-			return "main";
+		if(subject==null || shiroUser.getUserName()==null){
+			logger.warn("subject is null");
+			return "login";
 		}
 		logger.warn( shiroUser.getUserName() + ":" + shiroUser.getPassword() );
 
@@ -50,7 +51,8 @@ public class ShiroUserController {
 			// 这里将异常打印关闭是因为如果登录失败的话会自动抛异常
 			// e.printStackTrace();
 			model.addAttribute( "error", "用户名或密码错误" );
-			return "main";
+			model.addAttribute("code",-1);
+			return "login";
 		}
 	}
 

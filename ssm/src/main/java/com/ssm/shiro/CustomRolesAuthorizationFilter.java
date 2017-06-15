@@ -1,5 +1,11 @@
 package com.ssm.shiro;
 
+import org.apache.shiro.subject.Subject;
+import org.apache.shiro.web.filter.authz.AuthorizationFilter;
+
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+
 /**
  * Created by pengm on 2017/6/15.
  */
