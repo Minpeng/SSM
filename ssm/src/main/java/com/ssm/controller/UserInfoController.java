@@ -1,15 +1,17 @@
 package com.ssm.controller;
 
-import com.ssm.entity.UserInfo;
-import com.ssm.service.impl.UserInfoServiceImpl;
-import org.apache.log4j.Logger;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import com.ssm.entity.UserInfo;
+import com.ssm.service.impl.UserInfoServiceImpl;
 
 /**
  * Created by pengmin on 2017/5/6.
@@ -21,7 +23,8 @@ public class UserInfoController {
     @Autowired
     private UserInfoServiceImpl userInfoService;
 
-    private static Logger loger = Logger.getLogger(UserInfoController.class);
+	private static final Logger logger = LoggerFactory.getLogger( UserInfoController.class );
+
     /**
      * 根据用户id获取用户信息
      * @param request
@@ -42,7 +45,7 @@ public class UserInfoController {
         if(null==userInfo){
             return "查询数据为空...";
         }
-        loger.warn(userInfo.getAge()+userInfo.getId()+userInfo.getName());
+		logger.warn( userInfo.getAge() + userInfo.getId() + userInfo.getName() );
 
 
         return userInfo;

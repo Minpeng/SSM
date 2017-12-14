@@ -20,24 +20,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ssm.elasticsearch.entity.Article;
 
 @Controller
-@RequestMapping("/es")
+@RequestMapping( "/es" )
 public class EsDemoController {
 
 	@Autowired
 	ElasticsearchTemplate elasticsearchTemplate;
 
-	@RequestMapping("/test")
+	@RequestMapping( "/test" )
 	@ResponseBody
-	public String test(HttpServletRequest request) {
+	public String test( HttpServletRequest request ) {
 
 		String searchWord = request.getParameter( "word" );
 		// 使用queryStringQuery完成单字符串查询
-		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(
-		    QueryBuilders.queryStringQuery( searchWord ) ).build();
-
+		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery( QueryBuilders.queryStringQuery( searchWord ) ).build();
 
 		List<Article> queryForList = elasticsearchTemplate.queryForList( searchQuery, Article.class );
-		System.out.println(queryForList);
+		System.out.println( queryForList );
 		return queryForList.toString();
 	}
 

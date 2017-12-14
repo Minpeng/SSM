@@ -1,13 +1,15 @@
 package com.ssm.service.impl;
 
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.ssm.dao.UserInfoDaoMapper;
 import com.ssm.entity.UserInfo;
 import com.ssm.service.UserInfoService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.apache.log4j.Logger;
-
-import java.util.List;
 
 
 /**
@@ -17,7 +19,7 @@ import java.util.List;
 public class UserInfoServiceImpl implements UserInfoService{
 
 
-    private static Logger loger = Logger.getLogger(UserInfoServiceImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger( UserInfoServiceImpl.class );
 
     @Autowired
     UserInfoDaoMapper userInfoDaoMapper;
@@ -28,7 +30,7 @@ public class UserInfoServiceImpl implements UserInfoService{
      * @return
      */
     public UserInfo selectUser(int id)  {
-        loger.warn("id 是："+id);
+		logger.warn( "id 是：" + id );
         UserInfo userInfo=userInfoDaoMapper.selectUserInfoById(id);
 
         return  userInfo;

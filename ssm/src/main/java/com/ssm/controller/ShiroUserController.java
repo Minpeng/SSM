@@ -1,9 +1,11 @@
 package com.ssm.controller;
 
-import org.apache.log4j.Logger;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +31,8 @@ public class ShiroUserController {
 	public String loginUrl() {
 		return "login";
 	}
-	private static Logger logger = Logger.getLogger( ShiroUserController.class );
+
+	private static final Logger logger = LoggerFactory.getLogger( ShiroUserController.class );
 
 	@RequestMapping( "loginAdmin" )
 	public String login( ShiroUserEntity shiroUser, Model model ) {

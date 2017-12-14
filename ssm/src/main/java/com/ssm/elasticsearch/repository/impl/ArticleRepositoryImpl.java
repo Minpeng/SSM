@@ -12,6 +12,7 @@ import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import com.ssm.elasticsearch.entity.Article;
 import com.ssm.elasticsearch.repository.ArticleRepository;
 
+
 public class ArticleRepositoryImpl implements ArticleRepository {
 
 	@Override
