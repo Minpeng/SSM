@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<configuration status="off" monitorInterval="1800">  
+    <properties>  
+        <property name="LOG_HOME">/data/jsp/ssm/logs</property>  
+    </properties>  
+    <appenders>
+        <!-- 定义控制台输出 -->  
+        <Console name="stdout" target="SYSTEM_OUT" follow="true">  
+            <PatternLayout pattern="%date{yyyyMMddHHmmssSSS} %level [%file:%line] - %msg%n" />  
+        </Console>
+          
+
+        <RollingRandomAccessFile name="commonLog" 
+                fileName="${LOG_HOME}/commonLog.log" immediateFlush="true"
+                filePattern="${LOG_HOME}/commonLog.log.%d{yyyyMMdd}">  
+            <PatternLayout pattern="%date{yyyyMMddHHmmssSSS} %level [%file:%line] - %msg%n" />  
+            <Policies>  
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />  
+            </Policies>
+        </RollingRandomAccessFile>
+        
+        <RollingRandomAccessFile name="controllerLog" 
+                fileName="${LOG_HOME}/controllerLog.log" immediateFlush="true"
+                filePattern="${LOG_HOME}/controllerLog.log.%d{yyyyMMdd}">  
+                <PatternLayout pattern="%date{yyyyMMddHHmmssSSS} %level [%file:%line] - %msg%n" />  
+            <Policies>  
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />  
+            </Policies>
+        </RollingRandomAccessFile>
+
+    </appenders>  
+    
+    
+    <loggers>
+      
+
+        <logger name="com.ssm.common" level="info"  
+            additivity="false">  
+            <appender-ref ref="commonLog"/> 
+        </logger>
+        
+        <logger name="com.ssm.controller" level="info"  
+            additivity="false">  
+            <appender-ref ref="controllerLog"/>
+        </logger>
+        
+        <logger name="com.ibatis" level="debug"  
+            additivity="false">  
+            <appender-ref ref="stdout"/>
+        </logger>
+        
+        <logger name="java.sql" level="debug"  
+            additivity="false">  
+            <appender-ref ref="stdout"/>
+        </logger>
+        
+        
+        
+        <!-- Root Logger -->  
+        <root level="info">  
+            <appender-ref ref="stdout" />  
+        </root>  
+    </loggers>  
+</configuration>
