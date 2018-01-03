@@ -43,5 +43,5 @@
     </bean>
 	<!-- 自动为切面方法中匹配的方法所在的类生成代理对象。 -->
 	<aop:aspectj-autoproxy/>  
-    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+    
 </beans>

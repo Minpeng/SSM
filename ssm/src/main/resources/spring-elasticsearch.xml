@@ -13,8 +13,8 @@
 
    
  	<!-- Spring data 自动扫描repository接口，生成实现类 -->
-    <elasticsearch:repositories base-package="com.ssm.elasticsearch.repository" elasticsearch-template-ref="elasticsearchTemplate"/>
- 	
+   <!--  <elasticsearch:repositories base-package="com.ssm.elasticsearch.repository" elasticsearch-template-ref="elasticsearchTemplate"/>
+ 	 -->
 	 <elasticsearch:transport-client id="client" cluster-nodes="127.0.0.1:9300" />
     
     <bean name="elasticsearchTemplate"  

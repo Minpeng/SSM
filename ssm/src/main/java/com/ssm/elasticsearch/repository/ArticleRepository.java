@@ -5,12 +5,11 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
-import org.springframework.stereotype.Repository;
 
 import com.ssm.elasticsearch.entity.Article;
 
 
-@Repository
+// @Repository
 public interface ArticleRepository extends ElasticsearchRepository<Article, Long> {
 
 	List<Article> findByTitleAndAuthor( String title, String author );

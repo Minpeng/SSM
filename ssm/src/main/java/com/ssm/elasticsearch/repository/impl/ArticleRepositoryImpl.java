@@ -8,11 +8,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
+import org.springframework.stereotype.Component;
 
 import com.ssm.elasticsearch.entity.Article;
 import com.ssm.elasticsearch.repository.ArticleRepository;
 
 
+@Component( "articleRepository" )
 public class ArticleRepositoryImpl implements ArticleRepository {
 
 	@Override
