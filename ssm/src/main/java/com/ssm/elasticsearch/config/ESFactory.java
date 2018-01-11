@@ -52,6 +52,7 @@ public class ESFactory {
 		hashMap.put( "describe", "测试123" );
 		hashMap.put( "author", "测试doc" );
 		TransportClient client = getESClient();
+
 		try {
 			IndexResponse response = client.prepareIndex( index, type, hashMap.get( "id" ).toString() ).setSource( hashMap )
 			        .execute().actionGet();

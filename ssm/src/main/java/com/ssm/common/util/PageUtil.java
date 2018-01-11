@@ -8,25 +8,7 @@ import com.ssm.common.page.PageTurn;
 
 public class PageUtil {
 
-	public static void initParameter( Map<String, Object> model ) {
-		if( null != model.get( "page" ) ) {
-			int pageNo = Integer.parseInt( model.get( "page" ).toString() );
-			model.put( "pageNo", pageNo );
-		}
-		if( null != model.get( "pageSize" ) ) {
-			int pageSize = Integer.parseInt( model.get( "pageSize" ).toString() );
-			model.put( "pageSize", pageSize );
-		}
-
-		if( null != model.get( "sortType" ) ) {
-			String sortType = model.get( "sortType" ).toString();
-			String[] sortTypes = sortType.split( "\\." );
-			model.put( "sortName", sortTypes[0] );
-			model.put( "sortOrder", sortTypes[1] );
-		}
-	}
-
-	public static <T> Map<String, Object> getPageList( PageList pageList ) {
+	public static <T> Map<String, Object> getPageList( PageList<?> pageList ) {
 		Map<String, Object> result = new HashMap<String, Object>();
 
 		if( pageList.isEmpty() ) {

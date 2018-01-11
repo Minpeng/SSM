@@ -83,7 +83,6 @@ public class UserInfoController {
 	}
 
 	private <T> Map<String, Object> getNewPageList( Map<String, Object> model ) {
-		PageUtil.initParameter( model );
 		PageList<UserInfo> userInfo = userInfoService.getPageList( model, Integer.parseInt( model.get( "pageNo" ).toString() ),
 		    Integer.parseInt( model.get( "pageSize" ).toString() ) );
 		Map<String, Object> result = PageUtil.getPageList( userInfo );

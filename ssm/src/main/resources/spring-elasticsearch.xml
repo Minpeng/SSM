@@ -22,4 +22,9 @@
         <constructor-arg name="client" ref="client" />  
     </bean> 
     
+    <bean id="restClient" factory-bean="esClientBuilder" factory-method="init" destroy-method="close"/>
+	<bean id="esClientBuilder" class="com.ssm.elasticsearch.config.EsClientBuilder">  
+        <property name="ip" value="127.0.0.1" />  
+        <property name="port" value="9200" />  
+    </bean>
 </beans> 

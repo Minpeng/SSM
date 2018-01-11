@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.elasticsearch.action.bulk.BulkRequestBuilder;
 import org.elasticsearch.client.Client;
+import org.elasticsearch.client.RestClient;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
@@ -25,6 +26,9 @@ public class EsDemoController {
 
 	@Autowired
 	ElasticsearchTemplate elasticsearchTemplate;
+
+	@Autowired
+	RestClient restClient;
 
 	@RequestMapping( "/test" )
 	@ResponseBody
@@ -56,4 +60,7 @@ public class EsDemoController {
 		System.out.println( queryForList );
 		return queryForList.toString();
 	}
+
+	// 使用restClient
+
 }
