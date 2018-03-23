@@ -21,8 +21,8 @@ import java.lang.annotation.Target;
 @Retention( RetentionPolicy.RUNTIME )
 // 子类可以继承父类中的该注解
 @Inherited
+// 为注解定义一个方法即为注解定义了一个元素，返回的默认值为hell world
 public @interface MyAnnotation {
-	// 为注解定义一个方法即为注解定义了一个元素，返回的默认值为hell world
 	public String name() default "hello world";
 
 	public int age() default 10;
