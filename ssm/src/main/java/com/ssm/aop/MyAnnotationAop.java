@@ -3,7 +3,7 @@ package com.ssm.aop;
 import java.lang.reflect.Method;
 
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -21,12 +21,12 @@ import com.demo.annotation.MyAnnotation;
 @Component
 public class MyAnnotationAop {
 
-	@Pointcut( value = "@annotation( com.demo.annotion.MyAnnotation )" )
+	@Pointcut( value = "@annotation( com.demo.annotation.MyAnnotation )" )
 	private void cutMyAnnotation() {
 
 	}
 
-	@AfterReturning( value = "cutMyAnnotation()" )
+	@Around( value = "cutMyAnnotation()" )
 	public Object doMyAnnotation( ProceedingJoinPoint point ) throws Throwable {
 		MethodSignature ms = (MethodSignature)point.getSignature();
 		Method method = ms.getMethod();
